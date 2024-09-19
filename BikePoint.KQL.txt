@@ -1,0 +1,21 @@
+//************************************************************
+// Here are two articles to help you get started with KQL:
+// KQL reference guide - https://aka.ms/KQLguide
+// SQL - KQL conversions - https://aka.ms/sqlcheatsheet
+//**********************************************************
+
+// This query returns the most recent values for each BikePoint.
+BikePointEvents
+| where Event_time > ago(24h)
+| extend Dock_FillPct =  round(No_Bikes / todecimal( No_Bikes + No_Empty_Docks ) , 2)
+| summarize arg_max(Event_time,*) by BikepointID 
+
+// Return the BikePoint values, grouped in 3-minute periods, for the last 6 hours.
+BikePointEvents
+| where Event_time > ago(6h)
+| extend Dock_FillPct =  round(No_Bikes / todecimal( No_Bikes + No_Empty_Docks ) , 2)
+| summarize arg_max(Event_time, *) by bin(Event_time, 3m), BikepointID
+| project Neighbourhood, BikepointID, Event_time, No_Bikes, No_Empty_Docks, Dock_FillPct
+
+
+
