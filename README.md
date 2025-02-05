@@ -2,6 +2,8 @@
 
 ![image](https://github.com/user-attachments/assets/a765e1ae-c79f-4015-936b-4c9596fa4a9f)
 
+## Files are located in the London Bike Example folder
+
 ## Pre-requisite
  - Import the excel file with the BikePoints (as accounts) 
  - Follow the labs in the PDF
